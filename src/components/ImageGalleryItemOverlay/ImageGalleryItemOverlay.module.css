@@ -1,0 +1,23 @@
+.overlay {
+    margin-top: -52px;
+    padding: 4px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(60px, 1fr));
+    grid-auto-rows: 20px;
+    grid-gap: 4px;
+    justify-content: center;
+    justify-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #2e2f42;
+    opacity: 0.6;
+    transition: opacity 500ms ease-in-out;
+    fill: white;
+  }
+  
+  .overlay p {
+    margin: 0;
+    font-weight: 700;
+    color: white;
+  }

@@ -41,21 +41,26 @@ of the following structure.
 
   </form>
 </header>
+```
 
 Description of the <ImageGallery> component. A list of image cards. Creates a
 DOM element of the following structure.
 
+```
 <ul class="gallery">
   <! -- Set <li>
   with images -->
 </ul>
+```
 
 Description of the component <ImageGalleryItem>. A list item component with an
 image. Creates a DOM element of the following structure.
 
+```
 <li class="gallery-item">
   <img src="" alt="" />
 </li>
+```
 
 Description of the <Button> component Pressing the Load more button should load
 the next batch of Images and rendered with the previous ones. The button should
@@ -72,4 +77,3 @@ window should be closed.
 The appearance is similar to the functionality of this VanillaJS-plugin, only
 instead of white modal window the image is rendered (in the example press Run).
 Animation is not required.
-```
