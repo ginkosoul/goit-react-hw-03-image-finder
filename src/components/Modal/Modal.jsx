@@ -14,7 +14,7 @@ export default class Modal extends Component {
     window.removeEventListener('keydown', this.closeModalOnEsc);
   }
   closeModalOnEsc = e => {
-    if (e.Code === 'Escape' && this.state.modalImage) {
+    if (e.Code === 'Escape') {
       this.props.onModalClose();
     }
   };
