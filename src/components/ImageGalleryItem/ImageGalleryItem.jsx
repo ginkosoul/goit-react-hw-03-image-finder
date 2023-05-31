@@ -2,8 +2,8 @@ import ImageOverlay from 'components/ImageGalleryItemOverlay/ImageGalleryItemOve
 import PropTypes from 'prop-types';
 
 export default function ImageGalleryItem({
-  id,
   webformatURL,
+  largeImageURL,
   tags,
   likes,
   views,
@@ -12,7 +12,13 @@ export default function ImageGalleryItem({
   onClick,
 }) {
   return (
-    <li className="ImageGalleryItem" id={id} onClick={onClick}>
+    <li
+      className="ImageGalleryItem"
+      onClick={e => {
+        e.preventDefault();
+        onClick({ largeImageURL, tags });
+      }}
+    >
       <img className="ImageGalleryItem-image" src={webformatURL} alt={tags} />
       <ImageOverlay
         likes={likes}
@@ -25,8 +31,8 @@ export default function ImageGalleryItem({
 }
 
 ImageGalleryItem.propTypes = {
-  id: PropTypes.number.isRequired,
   webformatURL: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
   tags: PropTypes.string,
   likes: PropTypes.number.isRequired,
   views: PropTypes.number.isRequired,

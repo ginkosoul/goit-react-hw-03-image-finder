@@ -1,16 +1,31 @@
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default function Modal({ largeImageURL, tags, onModalClose }) {
-  return (
-    <div onClick={onModalClose} className="Overlay">
-      <div className="Modal">
-        <img src={largeImageURL} alt={tags} />
+export default class Modal extends Component {
+  static propTypes = {
+    largeImageURL: PropTypes.string.isRequired,
+    tags: PropTypes.string,
+    onModalClose: PropTypes.func.isRequired,
+  };
+  componentDidMount() {
+    window.addEventListener('keydown', this.closeModalOnEsc);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.closeModalOnEsc);
+  }
+  closeModalOnEsc = e => {
+    if (e.Code === 'Escape' && this.state.modalImage) {
+      this.props.onModalClose();
+    }
+  };
+  render() {
+    const { onModalClose, largeImageURL, tags } = this.props;
+    return (
+      <div onClick={onModalClose} className="Overlay">
+        <div className="Modal">
+          <img src={largeImageURL} alt={tags} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-Modal.propTypes = {
-  largeImageURL: PropTypes.string.isRequired,
-  tags: PropTypes.string,
-  onModalClose: PropTypes.func.isRequired,
-};

@@ -12,29 +12,19 @@ const params ={
 }
 const pixabay = axios.create({baseURL,params})
 
-export async function getImages(query) {
+export async function getImages(query, page) {
     params.q = query;
-    params.page = 1;
+    params.page = page;
     try {
         const { data, status } = await pixabay({params})
         if (status === 200) {
         const {hits, totalHits} = data;
+        if (totalHits === 0) throw new Error('No images found')
         const totalPages = Math.ceil(totalHits / params.per_page)
         const images = cleanImages(hits)
-        return {images, totalPages}}
-        return null;
-    } catch (error) {
-        throw error
+        return {images, totalPages}
     }
-}
-
-export async function loadImages(page){
-    params.page = page;
-    try {
-        const { data, status } = await pixabay({params})
-        if (status === 200) {  
-        return cleanImages(data.hits)}
-        return null;
+        throw new Error(`Could not get images: status ${status}`)
     } catch (error) {
         throw error
     }
